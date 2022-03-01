@@ -156,7 +156,8 @@ Widget buildTextField(
           
           prefixText: prefix),
       onChanged: (value) {
-        f;
+        f(value);
+
       },
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
