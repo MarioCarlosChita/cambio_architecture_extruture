@@ -155,8 +155,9 @@ Widget buildTextField(
           labelStyle: TextStyle(color: Colors.amber),
           
           prefixText: prefix),
-      onChanged: f()
-      ,
+      onChanged: (value) {
+        f;
+      },
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       style: TextStyle(color: Colors.amber));
