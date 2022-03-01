@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, unused_import, avoid_print, dead_code, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_label
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
@@ -45,7 +46,7 @@ class _HomeState extends State<Home> {
 
   void _realChanged(String text) {
     setState(() {
-      if (text.isEmpty){
+      if (text.isEmpty) {
         _clear();
         return;
       }
@@ -57,24 +58,23 @@ class _HomeState extends State<Home> {
 
   void _dolarChanged(String text) {
     setState(() {
-       if (text.isEmpty){
+      if (text.isEmpty) {
         _clear();
         return;
-        }
+      }
 
       double dolar = double.parse(text);
       realController.text = (dolar = this.dolar).toStringAsFixed(2);
       euroController.text = (dolar = this.dolar / euro).toStringAsFixed(2);
-    }
-    );
+    });
   }
 
   void _euroChanged(String text) {
     setState(() {
-       if (text.isEmpty){
+      if (text.isEmpty) {
         _clear();
         return;
-        }
+      }
       double euro = double.parse(text);
       realController.text = (euro = this.euro).toStringAsFixed(2);
       dolarController.text = (euro = this.euro / dolar).toStringAsFixed(2);
@@ -142,16 +142,18 @@ class _HomeState extends State<Home> {
 Widget buildTextField(
     String label, String prefix, TextEditingController c, Function f) {
   return TextField(
-    controller: c,
-    decoration: InputDecoration(
-        labelText: label,
-        labelStyle: TextStyle(color: Colors.amber),
-        border: OutlineInputBorder(borderSide: BorderSide(width:1,color:Colors.yellow)),
-        prefixText: prefix),
-    style: TextStyle(color: Colors.amber, fontSize: 25.0),
-      onChanged: f;
-      
-        keyboardType:
-        TextInputType.number;
-  );
+      controller: c,
+      decoration: InputDecoration(
+          labelText: label,
+          labelStyle: TextStyle(color: Colors.amber),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.amber, width: 5.0),
+          ),
+          prefixText: prefix),
+      onChanged: (value) {
+        f;
+      },
+      keyboardType: TextInputType.number,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+      style: TextStyle(color: Colors.amber));
 }
