@@ -45,39 +45,34 @@ class _HomeState extends State<Home> {
   }
 
   void _realChanged(String text) {
-    
-      if (text.isEmpty) {
-        _clear();
-        return;
-      }
-      double real = double.parse(text);
-      dolarController.text = (real / dolar).toStringAsFixed(2);
-      euroController.text = (real / euro).toStringAsFixed(2);
+    if (text.isEmpty) {
+      _clear();
+      return;
+    }
+    double real = double.parse(text);
+    dolarController.text = (real / dolar).toStringAsFixed(2);
+    euroController.text = (real / euro).toStringAsFixed(2);
   }
 
   void _dolarChanged(String text) {
-    
-      if (text.isEmpty) {
-        _clear();
-        return;
-      }
+    if (text.isEmpty) {
+      _clear();
+      return;
+    }
 
-      double dolar = double.parse(text);
-      realController.text = (dolar = this.dolar).toStringAsFixed(2);
-      euroController.text = (dolar = this.dolar / euro).toStringAsFixed(2);
-    
+    double dolar = double.parse(text);
+    realController.text = (dolar * this.dolar).toStringAsFixed(2);
+    euroController.text = (dolar * this.dolar / euro).toStringAsFixed(2);
   }
 
   void _euroChanged(String text) {
-    
-      if (text.isEmpty) {
-        _clear();
-        return;
-      }
-      double euro = double.parse(text);
-      realController.text = (euro = this.euro).toStringAsFixed(2);
-      dolarController.text = (euro = this.euro / dolar).toStringAsFixed(2);
-    
+    if (text.isEmpty) {
+      _clear();
+      return;
+    }
+    double euro = double.parse(text);
+    realController.text = (euro * this.euro).toStringAsFixed(2);
+    dolarController.text = (euro * this.euro / dolar).toStringAsFixed(2);
   }
 
   @override
@@ -142,22 +137,20 @@ Widget buildTextField(
     String label, String prefix, TextEditingController c, Function f) {
   return TextField(
       controller: c,
-
       decoration: InputDecoration(
-        filled: true, fillColor: Colors.black, focusedBorder: OutlineInputBorder(
+          filled: true,
+          fillColor: Colors.black,
+          focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white, width: 1.0),
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.amber, width: 1.0),
           ),
-
           labelText: label,
           labelStyle: TextStyle(color: Colors.amber),
-          
           prefixText: prefix),
       onChanged: (value) {
         f(value);
-
       },
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
