@@ -1,12 +1,10 @@
-// To parse this JSON data, do
-//
-//     final welcome = welcomeFromJson(jsonString);
+// podes usar o (quicktype.io) para converteres os teus json
 
 import 'dart:convert';
 
-ResultCoin welcomeFromJson(String str) => ResultCoin.fromJson(json.decode(str));
+ResultCoin resultCoinFromJson(String str) => ResultCoin.fromJson(json.decode(str));
 
-String welcomeToJson(ResultCoin data) => json.encode(data.toJson());
+String resultCoinToJson(ResultCoin data) => json.encode(data.toJson());
 
 class ResultCoin {
     ResultCoin({
